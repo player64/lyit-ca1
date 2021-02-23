@@ -1,4 +1,4 @@
-package com.mariusz;
+package com.mariusz.shapes;
 
 import java.awt.*;
 
@@ -9,7 +9,6 @@ public class Circle extends Shape {
 
     public Circle(int xCenter, int yCenter, int radius)
     {
-        super(xCenter, yCenter);
         this.radius = radius;
         this.xCenter = xCenter;
         this.yCenter = yCenter;

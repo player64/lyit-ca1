@@ -1,4 +1,4 @@
-package com.mariusz;
+package com.mariusz.shapes;
 
 import java.awt.*;
 
@@ -10,7 +10,6 @@ public class Rectangle extends Shape implements MoveAble {
 
     public Rectangle(int xCenter, int yCenter, int width, int height)
     {
-        super(xCenter, yCenter);
         this.width = width;
         this.height = height;
         this.xCenter = xCenter;

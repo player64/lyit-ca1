@@ -1,4 +1,4 @@
-package com.mariusz;
+package com.mariusz.shapes;
 import java.awt.*;
 
 /**
@@ -11,9 +11,6 @@ public abstract class Shape {
     private java.awt.Color color;
     private boolean filled;
 
-    public Shape(int xCenter, int yCenter) {
-
-    }
 
     public abstract void drawShape(Graphics graphics);
 

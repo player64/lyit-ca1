@@ -1,4 +1,4 @@
-package com.mariusz;
+package com.mariusz.shapes;
 
 import java.awt.*;
 
