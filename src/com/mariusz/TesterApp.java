@@ -1,20 +1,24 @@
 package com.mariusz;
 
 import com.mariusz.shapes.*;
+import com.mariusz.shapes.Rectangle;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TesterApp {
 
     public static void main(String[] args) {
 	    ShapesManager shapesManager = new ShapesManager();
-	    Rectangle rect = new Rectangle(50,120,58,80);
+	    shapesManager.setDisplayName(false);
+	    Rectangle rect = new Rectangle(Color.blue, 0,10,50,80, false);
 	    shapesManager.addShape(rect);
 
-        Circle circle = new Circle(100, 60, 200);
+
+        Circle circle = new Circle(Color.cyan, 300, 80, 50, false);
         shapesManager.addShape(circle);
 
-        Square square = new Square(450, 300, 30);
+        Square square = new Square(Color.gray, 450, 300, 80, true);
         shapesManager.addShape(square);
 
         CustomWindow customWindow = new CustomWindow(shapesManager);

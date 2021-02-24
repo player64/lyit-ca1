@@ -1,5 +1,7 @@
 package com.mariusz.shapes;
 
+import java.lang.reflect.Array;
+
 public class BoundingBox {
     private Point bottomLeft;
     private Point topRight;

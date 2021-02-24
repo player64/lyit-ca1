@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Square extends Rectangle {
 
-    public Square(int xCenter, int yCenter, int width)
+    public Square(Color color, int xCenter, int yCenter, int width, boolean filled)
     {
-        super(xCenter, yCenter, width, width);
+        super(color, xCenter, yCenter, width, width, filled);
     }
 }

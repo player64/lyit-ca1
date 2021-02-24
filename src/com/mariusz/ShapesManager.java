@@ -28,7 +28,7 @@ public class ShapesManager {
         return shapes;
     }
 
-    public void setDisplayName(boolean b) {
-        displayName = b;
+    public void setDisplayName(boolean displayName) {
+        this.displayName = displayName;
     }
 }
