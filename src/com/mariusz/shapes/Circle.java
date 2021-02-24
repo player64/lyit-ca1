@@ -15,9 +15,12 @@ public class Circle extends Shape {
     }
 
     @Override
-    public void drawShape(Graphics graphics)
+    public void drawShape(Graphics graphics, boolean caption)
     {
         graphics.drawOval(this.xCenter, this.yCenter, this.radius, this.radius);
+        if(caption) {
+            graphics.drawString(this.getClass().getSimpleName(), this.xCenter - 30, this.yCenter -30);
+        }
     }
 
     @Override

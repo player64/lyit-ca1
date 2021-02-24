@@ -17,9 +17,12 @@ public class Rectangle extends Shape implements MoveAble {
     }
 
     @Override
-    public void drawShape(Graphics graphics)
+    public void drawShape(Graphics graphics, boolean caption)
     {
         graphics.drawRect(this.xCenter, this.yCenter, this.width, this.height);
+        if(caption) {
+            graphics.drawString(this.getClass().getSimpleName(), this.xCenter, this.yCenter);
+        }
     }
 
     @Override

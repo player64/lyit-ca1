@@ -8,13 +8,13 @@ public class TesterApp {
 
     public static void main(String[] args) {
 	    ShapesManager shapesManager = new ShapesManager();
-	    Rectangle rect = new Rectangle(30,20,40,50);
+	    Rectangle rect = new Rectangle(50,120,58,80);
 	    shapesManager.addShape(rect);
 
         Circle circle = new Circle(100, 60, 200);
         shapesManager.addShape(circle);
 
-        Square square = new Square(0, 0, 30);
+        Square square = new Square(450, 300, 30);
         shapesManager.addShape(square);
 
         CustomWindow customWindow = new CustomWindow(shapesManager);

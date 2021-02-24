@@ -12,7 +12,7 @@ public abstract class Shape {
     private boolean filled;
 
 
-    public abstract void drawShape(Graphics graphics);
+    public abstract void drawShape(Graphics graphics, boolean caption);
 
     @Override
     public abstract String toString();

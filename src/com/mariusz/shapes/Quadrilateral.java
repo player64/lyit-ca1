@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Quadrilateral extends Shape {
 
-
+    // http://aspen.ucs.indiana.edu/webtech/java/examples1.1/K12/GeometryOO/Quadrilateral.java
     public Quadrilateral(Point centerPoint, Point[] points) {
 
     }
@@ -20,7 +20,7 @@ public class Quadrilateral extends Shape {
     }
 
     @Override
-    public void drawShape(Graphics graphics) {
+    public void drawShape(Graphics graphics, boolean caption) {
 
     }
 

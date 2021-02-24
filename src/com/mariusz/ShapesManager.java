@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class ShapesManager {
     private final ArrayList<Shape> shapes;
+    private boolean displayName = true;
 
     public ShapesManager() {
         // new array list of shapes initialisation
@@ -15,11 +16,19 @@ public class ShapesManager {
 
     public void drawShapes(Graphics graphicsContext)  {
         for(Shape shape : shapes) {
-            shape.drawShape(graphicsContext);
+            shape.drawShape(graphicsContext, displayName);
         }
     }
 
     public void addShape(Shape shape) {
         shapes.add(shape);
+    }
+
+    public ArrayList<Shape> getShapes() {
+        return shapes;
+    }
+
+    public void setDisplayName(boolean b) {
+        displayName = b;
     }
 }
