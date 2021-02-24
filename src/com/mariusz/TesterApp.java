@@ -14,7 +14,7 @@ public class TesterApp {
         Circle circle = new Circle(100, 60, 200);
         shapesManager.addShape(circle);
 
-        Square square = new Square(200, 300, 30);
+        Square square = new Square(0, 0, 30);
         shapesManager.addShape(square);
 
         CustomWindow customWindow = new CustomWindow(shapesManager);

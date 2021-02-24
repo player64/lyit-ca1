@@ -9,7 +9,7 @@ public class ShapesManager {
     private final ArrayList<Shape> shapes;
 
     public ShapesManager() {
-        // new array list of shape initialisation
+        // new array list of shapes initialisation
         shapes = new ArrayList<Shape>();
     }
 
