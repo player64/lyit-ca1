@@ -59,11 +59,14 @@ public class Rectangle extends Shape implements MoveAble {
     private void setupBoundingBox() {
         // x = 0; y = 10, w = 50, h = 80
         // bottomLeft =
-        Point bottomLeft = new Point(this.x + this.height, this.y + this.height);
 
-        Point topRight = new Point(this.y + width, this.y);
+        int topLeft = this.x + this.y;
+        int topRight = topLeft + this.width;
+        int bottomLeft = topLeft + this.height;
+        int bottomRight = bottomLeft + this.width;
 
-        this.boundingBox = new BoundingBox(bottomLeft, topRight);
+        // int xRight = xLeft + this.width;
+
     }
 
     @Override
