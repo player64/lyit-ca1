@@ -6,16 +6,20 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ShapesManager {
-    private ArrayList<Shape> shapes;
+    private final ArrayList<Shape> shapes;
 
+    public ShapesManager() {
+        // new array list of shape initialisation
+        shapes = new ArrayList<Shape>();
+    }
 
-    public void drawShapes(Graphics graphicsContext) {
-        for(Shape shape : this.shapes) {
+    public void drawShapes(Graphics graphicsContext)  {
+        for(Shape shape : shapes) {
             shape.drawShape(graphicsContext);
         }
     }
 
     public void addShape(Shape shape) {
-        this.shapes.add(shape);
+        shapes.add(shape);
     }
 }
