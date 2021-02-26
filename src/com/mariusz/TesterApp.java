@@ -33,7 +33,7 @@ public class TesterApp {
                 new Point(x+width, y+height),
                 new Point(x, y+height)
         };
-        Quadrilateral quad = new Quadrilateral(new Point(10, 20), points);
+        Quadrilateral quad = new Quadrilateral(new Point(x+width/2, y+height/2), points);
         shapesManager.addShape(quad);
 
         CustomWindow customWindow = new CustomWindow(shapesManager);

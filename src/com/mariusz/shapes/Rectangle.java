@@ -60,9 +60,6 @@ public class Rectangle extends Shape implements MoveAble {
         int[] yValues1 = {  50, 60, 50, 60};*/
 
 
-        System.out.println(this.x + " x " + this.y);
-
-
         /*int[] xValues1 = {this.x, this.x+width, x+width, this.x };
         int[] yValues1 = {this.y, this.y, this.y + this.height, this.y + this.height};
         Polygon p1 = new Polygon( xValues1, yValues1, 4);

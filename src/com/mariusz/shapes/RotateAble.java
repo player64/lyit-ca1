@@ -1,5 +1,6 @@
 package com.mariusz.shapes;
 
 public interface RotateAble {
-    public void rotateNinetyDegrees();
+    public int angle = 90;
+    public void rotateInDegrees();
 }
