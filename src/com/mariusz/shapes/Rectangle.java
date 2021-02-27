@@ -1,5 +1,7 @@
 package com.mariusz.shapes;
 
+import com.mariusz.Consts;
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Dictionary;
@@ -124,7 +126,7 @@ public class Rectangle extends Shape implements MoveAble {
     }
 
     @Override
-    public void moveTenUnits() {
-        this.x += this.UNITS;
+    public void moveShape() {
+        this.x += Consts.MOVE_UNITS;
     }
 }
