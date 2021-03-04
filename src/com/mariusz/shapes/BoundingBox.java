@@ -3,29 +3,43 @@ package com.mariusz.shapes;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+/**
+ * The type Bounding box.
+ */
 public class BoundingBox {
     private Point bottomLeft;
     private Point topRight;
 
+    /**
+     * Instantiates a new Bounding box.
+     *
+     * @param bottomLeft the bottom left
+     * @param topRight   the top right
+     */
     public BoundingBox(Point bottomLeft, Point topRight)
     {
         this.bottomLeft = bottomLeft;
         this.topRight = topRight;
     }
 
-    public Dictionary<String, Integer> getBottomLeft()
+    /**
+     * Gets bottom left.
+     *
+     * @return the bottom left
+     */
+    public Point getBottomLeft()
     {
-        Dictionary<String, Integer> coords = new Hashtable<>();
-        coords.put("x", bottomLeft.getX());
-        coords.put("y", bottomLeft.getY());
-        return coords;
+        return this.bottomLeft;
     }
 
-    public Dictionary<String, Integer> getTopRight()
+    /**
+     * Gets top right.
+     *
+     * @return the top right
+     */
+    public Point getTopRight()
     {
-        Dictionary<String, Integer> coords = new Hashtable<>();
-        coords.put("x", topRight.getX());
-        coords.put("y", topRight.getY());
-        return coords;
+        return topRight;
     }
+
 }

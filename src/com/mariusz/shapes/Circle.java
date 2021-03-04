@@ -1,7 +1,12 @@
 package com.mariusz.shapes;
 
 import java.awt.*;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
 
+/**
+ * The type Circle.
+ */
 public class Circle extends Shape {
     private final int xCenter;
     private final int yCenter;
@@ -11,6 +16,15 @@ public class Circle extends Shape {
     private Color color;
     private int diameter;
 
+    /**
+     * Instantiates a new Circle.
+     *
+     * @param color   the color
+     * @param xCenter the x center
+     * @param yCenter the y center
+     * @param radius  the radius
+     * @param filled  the filled
+     */
     public Circle(Color color, int xCenter, int yCenter, int radius, boolean filled)
     {
         diameter = radius * 2;
@@ -38,6 +52,11 @@ public class Circle extends Shape {
             graphics.setColor(Color.black);
             graphics.drawString(this.getClass().getSimpleName(), this.xCenter, this.yCenter);
         }
+    }
+
+    @Override
+    public void mouseClick(MouseEvent position, boolean isRightClicked) {
+
     }
 
     @Override
