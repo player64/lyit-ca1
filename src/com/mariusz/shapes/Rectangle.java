@@ -4,10 +4,6 @@ import com.mariusz.Consts;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 
 /**
@@ -16,13 +12,10 @@ import java.util.Hashtable;
 public class Rectangle extends Shape implements MoveAble {
     private final int width;
     private final int height;
-    private int xCenter;
-    private final int yCenter;
-    private boolean filled;
-    private Color color;
     private int x;
-    private int y;
+    private final int y;
     private BoundingBox boundingBox;
+
 
     /**
      * Instantiates a new Rectangle.
@@ -32,42 +25,48 @@ public class Rectangle extends Shape implements MoveAble {
      * @param yCenter the y center
      * @param width   the width
      * @param height  the height
-     * @param filled  the filled
      */
-    public Rectangle(Color color, int xCenter, int yCenter, int width, int height, boolean filled) {
+    public Rectangle(Color color, int xCenter, int yCenter, int width, int height) throws Exception {
+        this(color, xCenter, yCenter, false, width, height);
+    }
+
+    /**
+     * Instantiates a new Rectangle.
+     *
+     * @param color   the color
+     * @param xCenter the x center
+     * @param yCenter the y center
+     * @param filled  the filled
+     * @param width   the width
+     * @param height  the height
+     */
+    public Rectangle(Color color, int xCenter, int yCenter, boolean filled, int width, int height) throws Exception {
+        super(color, filled, xCenter, yCenter);
+
+
         this.width = width;
         this.height = height;
-        this.xCenter = xCenter;
-        this.yCenter = yCenter;
         this.color = color;
 
         // obtain x and y position
-        x = xCenter - width / 2;
-        y = yCenter - height / 2;
-        this.filled = filled;
+        x = this.xCenter - width / 2;
+        y = this.yCenter - height / 2;
         this.setBoundingBox();
     }
 
     @Override
-    public void drawShape(Graphics graphics, boolean caption) {
+    public void drawShape(Graphics graphics, boolean caption, boolean displayBounding) {
         graphics.setColor(color);
 
-        java.awt.Rectangle rec = new java.awt.Rectangle(this.x, this.y, this.width, this.height);
         if (filled) {
             graphics.fillRect(this.x, this.y, this.width, this.height);
         } else {
             graphics.drawRect(this.x, this.y, this.width, this.height);
         }
 
-        graphics.setColor(Color.black);
-
-        Polygon p1 = new Polygon();
-        p1.addPoint(x, y);
-        p1.addPoint(x + width, y);
-        p1.addPoint(x + width, y + height);
-        p1.addPoint(x, y + height);
-        graphics.drawPolygon(p1);
-
+        if (displayBounding) {
+            this.boundingBox.draw(graphics);
+        }
 
         if (caption) {
             graphics.setColor(Color.black);
@@ -75,85 +74,60 @@ public class Rectangle extends Shape implements MoveAble {
         }
     }
 
-    private void setBoundingBox() {
-        Dictionary<String, Point> coords = this.getEachPoint();
-        boundingBox = new BoundingBox(coords.get("bottomLeft"), coords.get("topRight"));
+    private void setBoundingBox() throws Exception {
+        boundingBox = new BoundingBox(this.eachBounding());
     }
 
-    public BoundingBox getBoundingBox() {
-        return boundingBox;
+    public Point[] eachBounding() {
+        return new Point[]{
+                // topLeft
+                new Point(x, y),
+                // topRight
+                new Point(x + width, y),
+                // bottomRight
+                new Point(x + width, y + height),
+                // bottomLeft
+                new Point(x, y + height),
+        };
     }
 
-    public Dictionary<String, Point> getEachPoint() {
-        Dictionary<String, Point> coords = new Hashtable<>();
-        coords.put("topLeft", new Point(x, y));
-        coords.put("topRight", new Point(x + width, y));
-        coords.put("bottomRight", new Point(x + width, y + height));
-        coords.put("bottomLeft", new Point(x, y + height));
-        coords.put("centerPoint", new Point(x + width / 2, y + height / 2));
-
-        return coords;
-    }
-
-    public ArrayList<Point> eachBounding() {
-        ArrayList<Point> bounds = new ArrayList<>();
-        bounds.add(new Point(x, y)); // topLeft
-        bounds.add(new Point(x + width, y)); // topRight
-        bounds.add(new Point(x + width, y + height)); // bottomRight
-        bounds.add(new Point(x, y + height)); // bottomLeft
-        bounds.add(new Point(x + width / 2, y + height / 2)); // centerPoint
-        return bounds;
+    public Point getCentralPoint() {
+        return new Point(this.xCenter, this.yCenter);
     }
 
     @Override
     public String toString() {
-        return "Width: " + this.width + " and Height: " + this.height;
+        return this.getClass().getSimpleName() + " drew Width: " + this.width + " Height: " + this.height;
     }
 
     @Override
-    public void moveShape() {
+    public void moveShape() throws Exception {
         this.x += Consts.MOVE_UNITS;
         this.xCenter += Consts.MOVE_UNITS;
         this.setBoundingBox();
     }
 
     @Override
-    public void mouseClick(MouseEvent position, boolean isRightClicked) {
-        if (this.isClickedInside(position))
-        {
+    public void mouseClick(MouseEvent position, boolean isRightClicked) throws Exception {
+        if (this.isClickedInside(position, this.boundingBox)) {
             this.filled = !this.filled;
-
+            System.out.println("Mouse click detected inside " + this.getClass().getSimpleName() + " " +
+                    ((this.filled) ? "" : "un-") + "filling shape");
             if (isRightClicked) {
+                System.out.println("Right mouse click detected inside " + this.getClass().getSimpleName() + " moving "
+                        + Consts.MOVE_UNITS + " points");
                 this.moveShape();
             }
         }
     }
 
-    private boolean isClickedInside(MouseEvent position) {
-        int clickedX = position.getX();
-        int clickedY = position.getY();
-
-        Point bbBottomLeft = this.boundingBox.getBottomLeft();
-        Point bbTopRight = this.boundingBox.getTopRight();
-
-        boolean isClickedBetweenX = this.isValueBetweenRange(bbBottomLeft.getX(), bbTopRight.getX(), clickedX);
-        boolean isClickedBetweenY = this.isValueBetweenRange(bbTopRight.getY(), bbBottomLeft.getY(), clickedY);
-
-        return (isClickedBetweenX && isClickedBetweenY);
+    public Color getColor()
+    {
+        return this.color;
     }
 
-    // if(bottomLeftX <= xClicked && xClicked <= topRightX && bottomLeftY >= yClicked && yClicked >= topRightY)
-/*    private boolean isBetweenX(int xPoint) {
-        int bottomLeft = this.boundingBox.getBottomLeft().get("x");
-        int topRight = this.boundingBox.getTopRight().get("x");
-
-        return (bottomLeft <= xPoint & xPoint <= topRight);
+    public boolean getFilled()
+    {
+        return this.filled;
     }
-
-    private boolean isBetweenY(int yPoint) {
-        int bottomLeft = this.boundingBox.getBottomLeft().get("y");
-        int topRight = this.boundingBox.getTopRight().get("y");
-
-        return (bottomLeft >= yPoint & yPoint >= topRight);
-    }*/
 }

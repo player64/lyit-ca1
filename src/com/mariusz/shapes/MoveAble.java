@@ -7,5 +7,5 @@ public interface MoveAble {
     /**
      * Move shape.
      */
-    public void moveShape();
+    public void moveShape() throws Exception;
 }

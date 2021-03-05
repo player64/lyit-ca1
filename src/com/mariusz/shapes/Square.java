@@ -17,8 +17,7 @@ public class Square extends Rectangle {
      * @param width   the width
      * @param filled  the filled
      */
-    public Square(Color color, int xCenter, int yCenter, int width, boolean filled)
-    {
-        super(color, xCenter, yCenter, width, width, filled);
+    public Square(Color color, int xCenter, int yCenter, boolean filled, int width) throws Exception {
+        super(color, xCenter, yCenter, filled, width, width);
     }
 }

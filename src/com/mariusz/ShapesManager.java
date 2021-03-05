@@ -13,13 +13,14 @@ import java.util.ArrayList;
 public class ShapesManager {
     private final ArrayList<Shape> shapes;
     private boolean displayName = true;
+    private boolean displayBounding = false;
 
     /**
      * Instantiates a new Shapes manager.
      */
     public ShapesManager() {
         // new array list of shapes initialisation
-        shapes = new ArrayList<Shape>();
+        shapes = new ArrayList<>();
     }
 
     /**
@@ -29,14 +30,14 @@ public class ShapesManager {
      */
     public void drawShapes(Graphics graphicsContext)  {
         for(Shape shape : shapes) {
-            shape.drawShape(graphicsContext, displayName);
+            shape.drawShape(graphicsContext, displayName, displayBounding);
         }
     }
 
     /**
      * Mouse is clicked
      */
-    public void clickedMouse(MouseEvent e, boolean isRightClicked) {
+    public void clickedMouse(MouseEvent e, boolean isRightClicked) throws Exception {
         for(Shape shape : shapes) {
             shape.mouseClick(e, isRightClicked);
         }
@@ -47,7 +48,8 @@ public class ShapesManager {
      *
      * @param shape the shape
      */
-    public void addShape(Shape shape) {
+    public void addShape(Shape shape)
+    {
         shapes.add(shape);
     }
 
@@ -56,7 +58,8 @@ public class ShapesManager {
      *
      * @return the shapes
      */
-    public ArrayList<Shape> getShapes() {
+    public ArrayList<Shape> getShapes()
+    {
         return shapes;
     }
 
@@ -65,7 +68,18 @@ public class ShapesManager {
      *
      * @param displayName the display name
      */
-    public void setDisplayName(boolean displayName) {
+    public void setDisplayName(boolean displayName)
+    {
         this.displayName = displayName;
+    }
+
+    /**
+     * Sets display bounding.
+     *
+     * @param display the display name
+     */
+    public void setDisplayBounding(boolean display)
+    {
+        this.displayBounding = display;
     }
 }
